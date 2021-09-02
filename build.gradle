@@ -1,0 +1,33 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    //여기에 명시에 버전을 따라가게 됩니다.
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+//repositories는 의존성(라이브러리)들을 어떤 원껵 저장소에서 받을 지 정합니다.
+//*mavenCentral 은 설정 요구되는것이 많아서 -> jcenter()로 옮겨지고 있는 추세
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+//의존성 관리
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+

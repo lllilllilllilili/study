@@ -16,3 +16,7 @@
 - 티스토리 보안유지(깃헙 블로그 쓸건지?? 요건 좀 고민됨, 마이그레이션 과정 theme좀 이쁜거 있나 찾아보자) 
 
 Author by 바코드네임
+
+## Link
+- Naver 앰버서더 Review (Cloud Part)
+- https://blog.naver.com/n_cloudplatform/222463915756 

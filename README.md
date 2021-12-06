@@ -2,7 +2,7 @@
 
 ## 지나간 강의/책/사이트
 - 스프링 입문 - 코드로 배우는 스프링 부트, 웹 MVC, DB 접근 기술
-- 
+- React.js, 스프링 부트, AWS로 배우는 웹 개발 101
 
 ## 진행 순서
 - Issue(과제) 생성
@@ -16,3 +16,7 @@
 - 티스토리 보안유지(깃헙 블로그 쓸건지?? 요건 좀 고민됨, 마이그레이션 과정 theme좀 이쁜거 있나 찾아보자) 
 
 Author by 바코드네임
+
+## Link
+- Naver 앰버서더 Review (Cloud Part)
+- https://blog.naver.com/n_cloudplatform/222463915756 

@@ -17,8 +17,6 @@
 
 Author by 바코드네임
 
-||
-
 ## Link
 - Naver 앰버서더 Review (Cloud Part)
 - https://blog.naver.com/n_cloudplatform/222463915756 

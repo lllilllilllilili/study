@@ -45,3 +45,120 @@ applicationContext.getBean("memberService", MemberServiceImpl.class);
 - 여기서 @Bean 이라 적힌 메서드를 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록한다.
 - 전에는 개발자가 필요한 객체를 AppConfig 를 사용해서 직접 조회했지만, 이제부터는 스프링 컨테이너를 통해서 필요한 스프링 빈(객체)를 찾아야 한다. 
 - 스프링 빈은 applicationContext.getBean() 메서드를 사용해서 찾을 수 있다.
+
+## 스프링 컨테이너와 스프링 빈
+- ApplicationContext 를 스프링 컨테이너라 한다.
+- ApplicationContext 는 인터페이스이다.
+
+```java
+//스프링 컨테이너 생성
+ApplicationContext applicationContext =
+                            new AnnotationConfigApplicationContext(AppConfig.class);
+```
+
+- new AnnotationConfigApplicationContext(AppConfig.class); 이 클래스는 ApplicationContext 인터페이스의 구현체이다.
+- AppConfig.class 구성정보를 활용한다. 
+- 스프링 컨테이너에 (빈이름, 빈객체) 로 저장한다.
+- 빈 이름은 항상 다른 이름을 부여해야 한다. 같은 이름을 부여하면, 다른 빈이 무시되거나, 기존 빈을 덮어버리거나 설정에 따라 오류가 발생한다.
+- 스프링 컨테이너는 설정 정보를 참고해서 의존관계를 주입(DI)한다.
+- 스프링은 빈을 생성하고, 의존관계를 주입하는 단계가 나누어져 있다. 그런데 이렇게 자바 코드로 스프링 빈을 등록하면 생성자를 호출하면서 의존관계 주입도 한번에 처리된다. 
+
+## 컨테이너에 등록된 모든 빈 조회
+
+```java
+    @Test
+    @DisplayName("모든 빈 출력하기")
+    void findAllBean(){
+        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            Object bean = ac.getBean(beanDefinitionName);
+            System.out.println("bean="+beanDefinitionName+" object ="+bean);
+        }
+    }
+``` 
+
+```java
+    //ROLE_APPLICATION : 일반적으로 사용자가 정의한 빈
+    //ROLE_INFRASTRUCTURE : 스프링이 내부에서 사용하는 빈
+    @Test
+    @DisplayName("애플리케이 빈 출력하기")
+    void findApplicationBean(){
+        /*
+        우리가 만든 bean만 나오는것을 확인할 수 있다.
+        bean=appConfig object =hello.core.AppConfig$$EnhancerBySpringCGLIB$$2fd30374@4e31276e
+        bean=memberService object =hello.core.member.MemberServiceImpl@1a72a540
+        bean=getMemberRepository object =hello.core.member.MemoryMemberRepository@27d5a580
+        bean=orderService object =hello.core.order.OrderServiceImpl@198d6542
+        bean=discountPolicy object =hello.core.discount.FixDiscountPolicy@5e403b4a
+         */
+        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName);
+            if(beanDefinition.getRole()==BeanDefinition.ROLE_APPLICATION){
+                Object bean = ac.getBean(beanDefinitionName);
+                System.out.println("bean="+beanDefinitionName+" object ="+bean);
+            }
+        }
+    }
+```
+
+- ac.getBeanDefinitionNames() : 스프링에 등록된 모든 빈 이름을 조회한다.
+- ac.getBean() : 빈 이름으로 빈 객체(인스턴스)를 조회한다.
+
+## 스프링 빈 조회 - 기본
+
+```java
+    @Test
+    @DisplayName("구체 타입으로 조회 ")
+    void findBeanByName2(){
+        //구현에 의존하기 때문에 좋은 코드가 아니다.
+        MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
+        //인스턴스 비교
+        assertThat(memberService).isInstanceOf(MemberServiceImpl.class);
+    }
+```
+
+## 스프링 빈 조회 - 동일한 타입이 둘 이상
+
+```java
+AnnotationConfigApplicationContext ac =
+        new AnnotationConfigApplicationContext(SameBeanConfig.class);
+
+    @Test
+    @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 중복 오류가 발생한다.")
+    void findBeanByTypeDuplicate(){
+//        MemberRepository bean = ac.getBean(MemberRepository.class);
+        assertThrows(NoUniqueBeanDefinitionException.class, ()->ac.getBean(MemberRepository.class));
+    }
+
+    @Test
+    @DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 빈 이름을 지정하면 된다.")
+    void findBeanByName(){
+        MemberRepository memberRepository = ac.getBean("memberRepository1", MemberRepository.class);
+        assertThat(memberRepository).isInstanceOf(MemberRepository.class);
+    }
+
+    @Test
+    @DisplayName("특정 타입을 모두 조회하기")
+    void findAllBeanByType(){
+        Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class);
+        for(String key : beansOfType.keySet()){
+            System.out.println("key = "+key + " value =" + beansOfType.get(key));
+        }
+        System.out.println("beansOfType = " + beansOfType);
+        assertThat(beansOfType.size()).isEqualTo(2);
+    }
+
+    @Configuration
+    static class SameBeanConfig{
+        @Bean
+        public MemberRepository memberRepository1(){
+            return new MemoryMemberRepository();
+        }
+
+        @Bean
+        public MemberRepository memberRepository2(){
+            return new MemoryMemberRepository();
+        }
+    }
+```

@@ -4,7 +4,7 @@
 
 SSL Handshake(TLS Handshake) 
 
-![](../Utils/image/HTTPS_통신_그림.png)
+![](../Utils/Image/HTTPS_통신_그림.png)
 ### Client Hello
 Client가 Server에 연결을 시도하며 전송하는 패킷이다. 
 Cipher Suite 목록, Session ID, SSL Protocol Version, Random byte 전달한다. 
@@ -12,10 +12,10 @@ Cipher Suite 목록, Session ID, SSL Protocol Version, Random byte 전달한다.
 
 ### Cipher Suite
 Client Hello에 Cipher Suite 리스트가 포함되어 있다. 
-![](../Utils/image/cipher_suite.png)
+![](../Utils/Image/cipher_suite.png)
 
 ### Cipher Suite 구성
-![](../Utils/image/cipher_suite_.png)
+![](../Utils/Image/cipher_suite_.png)
 
 ### Server Hello
 Client Hello 패킷을 받아 Cipher Suite 중 하나를 선택하여 Server에게 알립니다. 
@@ -37,7 +37,7 @@ Client, Server 모두가 서로에게 Packet으로 교환할 정보를 교환하
 
 SSL Handshake 과정을 거친 후에 Session이 연결됩니다. 
 TLS HandShake는 layer 4 계층에 놓이게 됩니다. 
-![](../Utils/image/osi7.png)
+![](../Utils/Image/osi7.png)
 
 참고 : https://security.stackexchange.com/questions/93333/what-layer-is-tls
 

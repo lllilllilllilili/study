@@ -1,4 +1,4 @@
-package com.studyaop.aop;
+package com.studyaop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

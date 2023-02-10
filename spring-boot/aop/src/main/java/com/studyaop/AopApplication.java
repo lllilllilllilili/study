@@ -1,4 +1,4 @@
-package com.studyaop.aop;
+package com.studyaop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

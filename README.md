@@ -21,3 +21,7 @@ Author by 바코드네임
 - Naver 앰버서더 Review (Cloud Part)
 - https://blog.naver.com/n_cloudplatform/222463915756 
 - 
+
+| 날짜 | 주제 | 링크
+:---: | :---:| :---:| 
+230210 | Spring AOP | [AOP](https://github.com/lllilllilllilili/study/tree/master/spring-boot/aop) 

@@ -5,3 +5,8 @@ JDK(Java Development Kit) 21은 처리량이 많은 동시 애플리케이션을 작성 및 유지 관
 이 기능의 이면에는 서버 애플리케이션이 최적의 하드웨어 활용으로 효과적으로 확장할 수 있도록 하고, 기존 lang.Thread API 코드에 대한 최소한의 변경으로 가상 스레드 채택을 촉진하고, 현재 JDK 도구를 사용하여 가상 스레드의 디버깅 및 프로파일링을 단순화하는 것이 포함된다.
 
 JDK 21은 가상 스레드가 있는 스레드 로컬 변수를 완벽하게 지원하여 기존 라이브러리와의 호환성을 높이고 가상 스레드를 사용하도록 작업 기반 코드의 마이그레이션을 지원한다.
+
+
+
+출처:
+[ [자바] java 21 가상 스레드 Virtual Thread](https://blog.naver.com/PostView.naver?blogId=seban21&logNo=223138158582&categoryNo=12&parentCategoryNo=7&viewDate=&currentPage=&postListTopCurrentPage=&isAfterWrite=true)

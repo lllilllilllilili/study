@@ -1,0 +1,21 @@
+## feature
+- 향상된 의사 난수 생성기 
+  - 의사 난수 생성기(Pseudo-Random Number Generator)를 위한 새로운 인터페이스 타입과 구현을 제공
+- 신규 Mac OS 렌더링 파이프라인
+  - Apple 메탈 API를 사용하는 Mac OS용 Java 파이프라인을 구현
+- 텍스트 블록 기능 추가
+  - 기존 String을 여러 줄 작성할 때 사용 가능한 기능, 가독성 있는 코드 지원
+- Switch 표현식 기능 향상
+  - Switch 문 이용 시 값을 반환하여 이용 가능 하며, 람다 스타일 구문을 사용 가능
+- Record Data class 추가
+  - immutable 객체를 생성하는 새로운 유형의 클래스로 기존 toString, equals, hashCode Method에 대한 구현을 자동 제공
+- Instanceof 매칭
+  - 이전 버전 경우 Instanceof 내부에서 객체를 캐스팅 하는 과정이 필요하였으나, 캐스팅 과정을 내부에서 지원할 수 있도록 변경
+- NumberFormat 클래스 기능 향상
+  - 기존 숫자 Format 클래스(NumberFormat) 내 Method 추가(getCompactNumberInstance)
+- DateTimeFormatter 클래스 기능 향상
+  - 기존 날짜 Format 클래스(DateTimeFormatter) 내 패턴 Method 형식 추가("B")
+- 봉인(Sealed) 클래스
+  - 무분별한 상속을 막기 위한 목적으로 등장한 기능으로 지정한 클래스 외 상속을 허용하지 않으며, 지정한 클래스 외 상속 불가능
+- Stream.toList() 기능 추가
+  - 기존, Stream을 List로 변환 시 Collectors에서 기능을 찾아 사용했다면 Java17 부터는 Collectors호출 없이 toList()만으로 변환이 가능

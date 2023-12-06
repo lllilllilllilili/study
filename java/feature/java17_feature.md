@@ -107,10 +107,12 @@ Record는 불변 객체이므로, 한 번 생성된 후에는 그 상태가 변�
 
 Record의 메서드 사용:
 
+```java
 String name = employee.name();
 int id = employee.id();
 
 System.out.println(employee);  // Employee[name=John Doe, id=123]
+```
 toString(), equals(), hashCode() 메서드가 자동으로 오버라이드되어 제공됩니다.
 
 Record 내의 필드는 모두 final이며 불변입니다.
@@ -127,21 +129,24 @@ Pattern Matching for instanceof의 주요 특징
 안전성 증가: 타입 캐스팅의 오류 가능성을 줄이고, 코드의 안전성을 향상시킵니다.
 
 as-is
-
+```java
 if (object instanceof String) {
 String str = (String) object;
 // str 사용
 }
+```
 
 
 to-be
-
+```java
 if (object instanceof String str) {
 // str을 직접 사용할 수 있음
 }
+```
 이 예시에서, instanceof 연산자를 사용하여 object가 String 타입인지 확인하고, String 타입으로 캐스팅하는 것을 한 줄의 코드로 간소화했습니다. 이렇게 함으로써 코드가 더 간결하고, 가독성이 향상되며, 캐스팅 과정에서 발생할 수 있는 오류를 줄일 수 있습니다.
 
 Sealed Classes (Preview)
+
 sealed class 나 interface는 상속을 미리 지정된 하위 클래스만 허용할 수 있도록 한다.
 상속 수현하는 클래스는 final, non-sealed, sealed 중 하나로 선언되어야 한다.
 sealed  : sealed 키워드는 클래스 혹은 인터페이스 상속을 제한한다.  sealed 로 선언된 클래스는 permits 절에 나열된 하위 클래스만 상속받을 수 있다.
@@ -157,14 +162,18 @@ public non-sealed class Rectangle extends Shape { /* ... */ }
 public class RoundedRectangle extends Rectangle { /* ... */ }
 final  : 더 이상 상속되지 않는 것을 의미한다. 추가 하위 클래스를 가질 수 없다.
 sealed 로 선언된 Circle, Rectangle 을 가질 수 있지만 차이점은 Circle은 추가 상속을 가질 수 없다. 반면에 Rectangle은 추가 상속을 받을 수 있다.
+```java
 public sealed class Shape permits Circle, Rectangle { /* ... */ }
 
 public final class Circle extends Shape { /* ... */ }
 
 public non-sealed class Rectangle extends Shape { /* ... */ }
+
+```
 Pattern Matching for Switch (Preview)
 "Pattern Matching for Switch"는 Java의 스위치(switch) 문을 확장하여 패턴 매칭 기능을 추가하는 것을 목표로 하는 기능입니다. 이 기능은 Java 17에서 프리뷰 기능으로 처음 소개되었습니다. 이를 통해 개발자들은 스위치 문 내에서 더 복잡한 데이터 타입과 조건을 효과적으로 처리할 수 있게 되었습니다.
 
+```java
 Object obj = // ...
 
 String formatted = switch (obj) {
@@ -174,3 +183,4 @@ case Double d  -> String.format("double %f", d);
 case String s  -> String.format("String %s", s);
 default        -> obj.toString();
 };
+```
